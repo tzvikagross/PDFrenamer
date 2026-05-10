@@ -1,0 +1,402 @@
+/* BDO brand palette */
+:root {
+  --bdo-red:        #CC2027;
+  --bdo-red-dark:   #a01820;
+  --bdo-red-light:  #f5e6e7;
+  --white:          #ffffff;
+  --charcoal:       #1a1a1a;
+  --gray-light:     #f5f5f5;
+  --gray-border:    #e0e0e0;
+  --unmatched-bg:   #ffd6d6;
+  --duplicate-bg:   #fff0cc;
+  --duplicate-border: #e6a817;
+  --matched-hover:  #fef9f9;
+
+  --header-h:   72px;
+  --toppanel-h: auto;
+  --actionbar-h: 52px;
+  --footer-h:    40px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Full-viewport fixed layout ── */
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--gray-light);
+  color: var(--charcoal);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header (fixed) ── */
+header {
+  flex-shrink: 0;
+  background: var(--bdo-red);
+  color: var(--white);
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: var(--header-h);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  z-index: 10;
+}
+
+header .logos {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+header .logos img {
+  height: 48px;
+  object-fit: contain;
+  background: var(--white);
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+header h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  flex: 1;
+}
+
+/* ── Top panel (sources + params, fixed, no scroll) ── */
+.top-panel {
+  flex-shrink: 0;
+  padding: 14px 32px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--gray-light);
+  z-index: 5;
+}
+
+/* ── Grid area (fills remaining space, scrolls internally) ── */
+.grid-area {
+  flex: 1;
+  min-height: 0;          /* critical for flex children to shrink below content size */
+  display: flex;
+  flex-direction: column;
+  margin: 10px 32px 0;
+  background: var(--white);
+  border: 1px solid var(--gray-border);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+  overflow: hidden;
+}
+
+.grid-toolbar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px 8px;
+  border-bottom: 1px solid var(--gray-border);
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.grid-title-block {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.row-count {
+  font-size: 0.78rem;
+  color: #888;
+}
+
+.table-wrapper {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+/* ── Action bar (fixed, no scroll) ── */
+.action-bar {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 32px;
+  background: var(--white);
+  border-top: 1px solid var(--gray-border);
+  height: var(--actionbar-h);
+}
+
+/* ── Footer (fixed) ── */
+footer {
+  flex-shrink: 0;
+  text-align: center;
+  height: var(--footer-h);
+  line-height: var(--footer-h);
+  font-size: 0.78rem;
+  color: #999;
+  border-top: 1px solid var(--gray-border);
+  background: var(--white);
+}
+footer span { color: var(--bdo-red); font-weight: 600; }
+
+/* ── Cards ── */
+.card {
+  background: var(--white);
+  border: 1px solid var(--gray-border);
+  border-radius: 6px;
+  padding: 14px 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.07);
+}
+
+.card-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--bdo-red);
+  margin-bottom: 10px;
+}
+
+/* ── Picker rows ── */
+.picker-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.picker-row:last-child { margin-bottom: 0; }
+
+.picker-label {
+  width: 90px;
+  font-size: 0.83rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.picker-path {
+  flex: 1;
+  font-size: 0.8rem;
+  color: #666;
+  background: var(--gray-light);
+  border: 1px solid var(--gray-border);
+  border-radius: 4px;
+  padding: 5px 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+/* ── Params row ── */
+.params-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.param-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.param-group label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.param-group input,
+.param-group select {
+  height: 34px;
+  padding: 0 10px;
+  border: 1px solid var(--gray-border);
+  border-radius: 4px;
+  font-size: 0.88rem;
+  color: var(--charcoal);
+  background: var(--white);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.param-group input:focus,
+.param-group select:focus {
+  border-color: var(--bdo-red);
+  box-shadow: 0 0 0 2px var(--bdo-red-light);
+}
+
+.param-group input.fund-input   { width: 90px; }
+.param-group input.date-input   { width: 130px; }
+.param-group select.doctype-select { width: 100px; }
+
+input.invalid { border-color: var(--bdo-red) !important; background: var(--bdo-red-light); }
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.83rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.08s;
+  white-space: nowrap;
+}
+.btn:active { transform: scale(0.97); }
+
+.btn-outline {
+  background: var(--white);
+  color: var(--bdo-red);
+  border: 1.5px solid var(--bdo-red);
+}
+.btn-outline:hover { background: var(--bdo-red-light); }
+
+.btn-rename {
+  background: var(--bdo-red);
+  color: var(--white);
+  padding: 9px 24px;
+  font-size: 0.92rem;
+  border-radius: 5px;
+}
+.btn-rename:hover  { background: var(--bdo-red-dark); }
+.btn-rename:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Status bar ── */
+#status-bar {
+  font-size: 0.82rem;
+  color: #777;
+  flex: 1;
+}
+#status-bar.error   { color: var(--bdo-red); font-weight: 600; }
+#status-bar.success { color: #1a7a1a; font-weight: 600; }
+
+/* ── Legend ── */
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.76rem;
+  color: #666;
+  flex-wrap: wrap;
+}
+.legend-dot {
+  width: 12px; height: 12px;
+  border-radius: 2px;
+  display: inline-block;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+.legend-dot.matched   { background: var(--white);        border: 1px solid var(--gray-border); }
+.legend-dot.unmatched { background: var(--unmatched-bg); border: 1px solid var(--bdo-red); }
+.legend-dot.duplicate { background: var(--duplicate-bg); border: 1px solid var(--duplicate-border); }
+
+/* ── Table ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+thead th {
+  background: var(--bdo-red);
+  color: var(--white);
+  text-align: left;
+  padding: 10px 14px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--gray-border);
+  transition: background 0.1s;
+}
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: var(--matched-hover); }
+
+tbody tr.unmatched          { background: var(--unmatched-bg); }
+tbody tr.unmatched:hover    { background: #ffc0c0; }
+tbody tr.duplicate          { background: var(--duplicate-bg); }
+tbody tr.duplicate:hover    { background: #ffe5a0; }
+
+/* duplicate takes priority over unmatched */
+tbody tr.duplicate.unmatched { background: var(--duplicate-bg); }
+
+tbody td {
+  padding: 8px 14px;
+  vertical-align: middle;
+}
+
+td.col-pdf {
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 0.81rem;
+  color: #333;
+  max-width: 420px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+td.col-match {
+  width: 320px;
+  min-width: 240px;
+}
+
+td.col-match select {
+  width: 100%;
+  padding: 5px 8px;
+  border: 1px solid var(--gray-border);
+  border-radius: 4px;
+  font-size: 0.83rem;
+  background: var(--white);
+  color: var(--charcoal);
+  outline: none;
+  cursor: pointer;
+}
+td.col-match select:focus        { border-color: var(--bdo-red); }
+tr.unmatched td.col-match select { border-color: var(--bdo-red); }
+tr.duplicate td.col-match select { border-color: var(--duplicate-border); }
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+/* ── Browser warning ── */
+.browser-notice {
+  background: #fff8e1;
+  border: 1px solid #f0c040;
+  border-radius: 4px;
+  padding: 8px 14px;
+  font-size: 0.8rem;
+  color: #7a5800;
+  display: none;
+}
+.browser-notice.visible { display: block; }

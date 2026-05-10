@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PDF Renamer</title>
+  <link rel="icon" type="image/jpeg" href="TGlogo.jpg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Fixed header ── -->
+  <header>
+    <div class="logos">
+      <img id="logo-bdo" src="BDOlogo.png" alt="BDO"
+           onerror="this.style.display='none'" />
+      <img id="logo-tg" src="TGlogo.jpg" alt="Tzvika Gross"
+           onerror="this.style.display='none'" />
+    </div>
+    <h1>PDF Renamer</h1>
+  </header>
+
+  <!-- ── Fixed top panel (sources + params) ── -->
+  <div class="top-panel">
+
+    <div id="browser-notice" class="browser-notice">
+      ⚠ This app requires Chrome 116+ or Edge 116+. Your current browser may not support the
+      File System Access API needed for folder access and file renaming.
+    </div>
+
+    <!-- Pickers card -->
+    <div class="card">
+      <div class="card-title">Sources</div>
+
+      <div class="picker-row">
+        <span class="picker-label">PDF Folder</span>
+        <button id="btn-folder" class="btn btn-outline">📁 Select Folder</button>
+        <span id="folder-path" class="picker-path">No folder selected</span>
+      </div>
+
+      <div class="picker-row">
+        <span class="picker-label">Excel File</span>
+        <button id="btn-excel" class="btn btn-outline">📊 Select Excel</button>
+        <span id="excel-path" class="picker-path">No file selected</span>
+      </div>
+    </div>
+
+    <!-- Parameters card -->
+    <div class="card">
+      <div class="card-title">File Name Parameters</div>
+      <div class="params-row">
+        <div class="param-group">
+          <label for="fund-num">Fund #</label>
+          <input type="text" id="fund-num" class="fund-input"
+                 placeholder="e.g. 52" maxlength="6" inputmode="numeric" />
+        </div>
+        <div class="param-group">
+          <label for="date-str">Date (YYYYMMDD)</label>
+          <input type="text" id="date-str" class="date-input"
+                 placeholder="20251231" maxlength="8" inputmode="numeric" />
+        </div>
+        <div class="param-group">
+          <label for="doc-type">Doc Type</label>
+          <select id="doc-type" class="doctype-select">
+            <option value="CC">CC</option>
+            <option value="CD">CD</option>
+            <option value="CA">CA</option>
+            <option value="CN">CN</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.top-panel -->
+
+  <!-- ── Scrollable grid area ── -->
+  <div class="grid-area">
+    <div class="grid-toolbar">
+      <div class="grid-title-block">
+        <span class="card-title" style="margin-bottom:0">Matched Files</span>
+        <span id="row-count" class="row-count"></span>
+      </div>
+      <div class="legend">
+        <span><span class="legend-dot matched"></span>Matched</span>
+        <span><span class="legend-dot unmatched"></span>Unmatched</span>
+        <span><span class="legend-dot duplicate"></span>Duplicate — must fix before rename</span>
+      </div>
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>PDF Filename</th>
+            <th>Investor Match</th>
+          </tr>
+        </thead>
+        <tbody id="grid-body">
+          <tr>
+            <td colspan="2" class="empty-state">
+              Select a folder and an Excel file above to begin.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div><!-- /.grid-area -->
+
+  <!-- ── Fixed action bar ── -->
+  <div class="action-bar">
+    <div id="status-bar"></div>
+    <button id="rename-btn" class="btn btn-rename" disabled>
+      ✏ Rename Files
+    </button>
+  </div>
+
+  <!-- ── Fixed footer ── -->
+  <footer>
+    Built by <span>Tzvika Gross</span> &nbsp;·&nbsp; BDO Israel
+  </footer>
+
+  <!-- Libraries -->
+  <script src="lib/xlsx.min.js"></script>
+  <script src="lib/fuse.min.js"></script>
+  <!-- App modules -->
+  <script src="matching.js"></script>
+  <script src="renamer.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>

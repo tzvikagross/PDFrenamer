@@ -1,0 +1,43 @@
+build an app that will have a button to select a  of a folder (the Folder),  and another button to select an excel file (the Excel)
+
+
+
+the app will ask the user to provide 3 more items (in text boxes): 
+
+
+
+1. fund #
+
+2. date (format YYYYMMDD)
+
+3. do type (CC | CD | CA | CN)
+
+
+
+the Folder contains PDF files . the name of each PDF file contains the name of the investor that the PDF file relates to .
+
+the Excel file contains two columns , one with the investor number, and another one with the investor name
+
+the names of the investors in the Excel are similar to the names in the PDF files, but not exactly the same
+
+
+
+the app will then present a grid with all the names of the PDF files in the Folder, and the matching investor number and investor name from the Excel
+
+each line in the excel can match only one PDF file
+
+the app will try to pick the most relevant match to each PDF file
+
+if the app will not be able to match any record in the Excel to a PDF file, it will leave those two cells empty, and highlight the whole row in the grid
+
+the user will be able to change the investor number and name , for any PDF file name, in a dropdown box that will be populate from the Excel
+
+
+
+when the user press a button "Rename Files" the system will then rename every PDF file that has an investor number and investor name matched, to the following file name format :
+
+[fund #]-[investor number]-[date (YYYYMMDD)]-[doc type (CC | CD | CA | CN)]-[investor name].PDF
+
+e.g. 052-003-20251231-JohnDow.PDF
+
+the fund# and investor# should be 3 digits (trailing  zeros)
